@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -91,26 +90,8 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'Home',
           path: '/home',
+          requireAuth: true,
           builder: (context, params) => const HomeWidget(),
-        ),
-        FFRoute(
-          name: 'Checkup',
-          path: '/checkup',
-          builder: (context, params) => const CheckupWidget(),
-        ),
-        FFRoute(
-          name: 'ViewCheckup',
-          path: '/viewCheckup',
-          asyncParams: {
-            'checkup': getDoc(
-                ['users', 'daily_checkup'], DailyCheckupRecord.fromSnapshot),
-          },
-          builder: (context, params) => ViewCheckupWidget(
-            checkup: params.getParam(
-              'checkup',
-              ParamType.Document,
-            ),
-          ),
         ),
         FFRoute(
           name: 'Login',
@@ -118,23 +99,24 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LoginWidget(),
         ),
         FFRoute(
-          name: 'EditCheckup',
-          path: '/editCheckup',
-          asyncParams: {
-            'checkupId': getDoc(
-                ['users', 'daily_checkup'], DailyCheckupRecord.fromSnapshot),
-          },
-          builder: (context, params) => EditCheckupWidget(
-            checkupId: params.getParam(
-              'checkupId',
-              ParamType.Document,
-            ),
-          ),
-        ),
-        FFRoute(
           name: 'Profil',
           path: '/profil',
           builder: (context, params) => const ProfilWidget(),
+        ),
+        FFRoute(
+          name: 'Parametres',
+          path: '/parametres',
+          builder: (context, params) => const ParametresWidget(),
+        ),
+        FFRoute(
+          name: 'Slider',
+          path: '/slider',
+          builder: (context, params) => const SliderWidget(),
+        ),
+        FFRoute(
+          name: 'RegisterChekup',
+          path: '/registerCheckup',
+          builder: (context, params) => const RegisterChekupWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -320,10 +302,13 @@ class FFRoute {
               : builder(context, ffParams);
           final child = appStateNotifier.loading
               ? Container(
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  child: Image.asset(
-                    'assets/images/Daily_checkup.png',
-                    fit: BoxFit.fitWidth,
+                  color: FlutterFlowTheme.of(context).secondary,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/Prismy_logo.svg',
+                      width: MediaQuery.sizeOf(context).width * 0.46,
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
                 )
               : PushNotificationsHandler(child: page);

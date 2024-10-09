@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>753389128741-fpij1c9rtbv5ovaimm9g5l1bfibsqm5t.apps.googleusercontent.com</string>
+	<string>753389128741-pbanfhmhbugiij47fhv83uvce5jj6ugd.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.753389128741-fpij1c9rtbv5ovaimm9g5l1bfibsqm5t</string>
+	<string>com.googleusercontent.apps.753389128741-pbanfhmhbugiij47fhv83uvce5jj6ugd</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>753389128741-feta29vqudpcc2obrc5me6h9d7ehfs79.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mycompany.mydailycheckup</string>
+	<string>com.hugodorus.prismy</string>
 	<key>PROJECT_ID</key>
 	<string>daily-checkup-d6ixp1</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:753389128741:ios:6ab42a3a3607464a6003cc</string>
+	<string>1:753389128741:ios:a055c2df20ee27226003cc</string>
 </dict>
 </plist>

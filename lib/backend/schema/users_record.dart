@@ -45,6 +45,26 @@ class UsersRecord extends FirestoreRecord {
   String get phoneNumber => _phoneNumber ?? '';
   bool hasPhoneNumber() => _phoneNumber != null;
 
+  // "notifications_allowed" field.
+  bool? _notificationsAllowed;
+  bool get notificationsAllowed => _notificationsAllowed ?? false;
+  bool hasNotificationsAllowed() => _notificationsAllowed != null;
+
+  // "niveau" field.
+  double? _niveau;
+  double get niveau => _niveau ?? 0.0;
+  bool hasNiveau() => _niveau != null;
+
+  // "gouttes_exp" field.
+  double? _gouttesExp;
+  double get gouttesExp => _gouttesExp ?? 0.0;
+  bool hasGouttesExp() => _gouttesExp != null;
+
+  // "progression_niveau" field.
+  double? _progressionNiveau;
+  double get progressionNiveau => _progressionNiveau ?? 0.0;
+  bool hasProgressionNiveau() => _progressionNiveau != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -52,6 +72,10 @@ class UsersRecord extends FirestoreRecord {
     _uid = snapshotData['uid'] as String?;
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
+    _notificationsAllowed = snapshotData['notifications_allowed'] as bool?;
+    _niveau = castToType<double>(snapshotData['niveau']);
+    _gouttesExp = castToType<double>(snapshotData['gouttes_exp']);
+    _progressionNiveau = castToType<double>(snapshotData['progression_niveau']);
   }
 
   static CollectionReference get collection =>
@@ -94,6 +118,10 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  bool? notificationsAllowed,
+  double? niveau,
+  double? gouttesExp,
+  double? progressionNiveau,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -103,6 +131,10 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'notifications_allowed': notificationsAllowed,
+      'niveau': niveau,
+      'gouttes_exp': gouttesExp,
+      'progression_niveau': progressionNiveau,
     }.withoutNulls,
   );
 
@@ -119,7 +151,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.photoUrl == e2?.photoUrl &&
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
-        e1?.phoneNumber == e2?.phoneNumber;
+        e1?.phoneNumber == e2?.phoneNumber &&
+        e1?.notificationsAllowed == e2?.notificationsAllowed &&
+        e1?.niveau == e2?.niveau &&
+        e1?.gouttesExp == e2?.gouttesExp &&
+        e1?.progressionNiveau == e2?.progressionNiveau;
   }
 
   @override
@@ -129,7 +165,11 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.photoUrl,
         e?.uid,
         e?.createdTime,
-        e?.phoneNumber
+        e?.phoneNumber,
+        e?.notificationsAllowed,
+        e?.niveau,
+        e?.gouttesExp,
+        e?.progressionNiveau
       ]);
 
   @override

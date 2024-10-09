@@ -10,7 +10,7 @@ Future initFirebase() async {
             projectId: "daily-checkup-d6ixp1",
             storageBucket: "daily-checkup-d6ixp1.appspot.com",
             messagingSenderId: "753389128741",
-            appId: "1:753389128741:web:426df8dfaf3af8a16003cc"));
+            appId: "1:753389128741:web:ed7ef0d2be53d2936003cc"));
   } else {
     await Firebase.initializeApp();
   }

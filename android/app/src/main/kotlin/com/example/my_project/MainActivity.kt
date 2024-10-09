@@ -1,4 +1,4 @@
-package com.mycompany.mydailycheckup
+package com.hugodorus.prismy
 
 import io.flutter.embedding.android.FlutterActivity
 

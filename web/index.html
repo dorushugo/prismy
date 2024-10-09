@@ -19,31 +19,32 @@
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="My Daily Checkup">
+  <meta name="apple-mobile-web-app-title" content="Prismy">
 
   
 
   <meta name="robots" content="noindex" />
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <link rel="icon" href="Prismy_logo.svg" sizes="any"/>
+  
 
   <!-- Open Graph & SEO tags -->
-  <meta property="og:title" content="My Daily Checkup" />
+  <meta property="og:title" content="Prismy - The app that help your mental health" />
   <meta property="og:description" content="Built with FlutterFlow." />
-  <meta property="og:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" /> 
-  <meta name="twitter:title" content="My Daily Checkup" />
+  <meta property="og:image" content="/assets/assets/images/Prismy_logo_SMALL.png" /> 
+  <meta name="twitter:title" content="Prismy - The app that help your mental health" />
   <meta name="twitter:description" content="Built with FlutterFlow." />
-  <meta name="twitter:image" content="https://storage.googleapis.com/flutterflow-prod-hosting/og_splash_gradient.png" />
+  <meta name="twitter:image" content="/assets/assets/images/Prismy_logo_SMALL.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <title> My Daily Checkup </title>
+  <title> Prismy - The app that help your mental health </title>
   <meta name="description" content="Built with FlutterFlow." />
     
 
   <!-- Status Bar color in Safari browser (iOS) and PWA -->
-  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f1f4f8">
-  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#f1f4f8">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#4caf7a">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#4caf7a">
 
   <link rel="manifest" href="manifest.json">
   <script>
@@ -71,7 +72,7 @@
         },
         onEntrypointLoaded: async function(engineInitializer) {
           // Initialize the Flutter engine
-          let appRunner = await engineInitializer.initializeEngine({});
+          let appRunner = await engineInitializer.initializeEngine({useColorEmoji: true,});
           // Run the app
           await appRunner.runApp();
         }

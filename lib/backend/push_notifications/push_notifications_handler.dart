@@ -1,11 +1,10 @@
 import 'dart:async';
 
-import 'serialization_util.dart';
-import '../backend.dart';
-import '../../flutter_flow/flutter_flow_theme.dart';
+import '/flutter_flow/flutter_flow_theme.dart';
 import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 
 final _handledMessageIds = <String?>{};
@@ -41,9 +40,7 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
     }
     _handledMessageIds.add(message.messageId);
 
-    if (mounted) {
-      setState(() => _loading = true);
-    }
+    safeSetState(() => _loading = true);
     try {
       final initialPageName = message.data['initialPageName'] as String;
       final initialParameterData = getInitialParameterData(message.data);
@@ -59,25 +56,28 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
     } catch (e) {
       print('Error: $e');
     } finally {
-      if (mounted) {
-        setState(() => _loading = false);
-      }
+      safeSetState(() => _loading = false);
     }
   }
 
   @override
   void initState() {
     super.initState();
-    handleOpenedPushNotification();
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      handleOpenedPushNotification();
+    });
   }
 
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.of(context).primaryBackground,
-          child: Image.asset(
-            'assets/images/Daily_checkup.png',
-            fit: BoxFit.fitWidth,
+          color: FlutterFlowTheme.of(context).secondary,
+          child: Center(
+            child: Image.asset(
+              'assets/images/Prismy_logo.svg',
+              width: MediaQuery.sizeOf(context).width * 0.46,
+              fit: BoxFit.fitWidth,
+            ),
           ),
         )
       : widget.child;
@@ -106,21 +106,11 @@ final parametersBuilderMap =
     <String, Future<ParameterData> Function(Map<String, dynamic>)>{
   'SignUp': ParameterData.none(),
   'Home': ParameterData.none(),
-  'Checkup': ParameterData.none(),
-  'ViewCheckup': (data) async => ParameterData(
-        allParams: {
-          'checkup': await getDocumentParameter<DailyCheckupRecord>(
-              data, 'checkup', DailyCheckupRecord.fromSnapshot),
-        },
-      ),
   'Login': ParameterData.none(),
-  'EditCheckup': (data) async => ParameterData(
-        allParams: {
-          'checkupId': await getDocumentParameter<DailyCheckupRecord>(
-              data, 'checkupId', DailyCheckupRecord.fromSnapshot),
-        },
-      ),
   'Profil': ParameterData.none(),
+  'Parametres': ParameterData.none(),
+  'Slider': ParameterData.none(),
+  'RegisterChekup': ParameterData.none(),
 };
 
 Map<String, dynamic> getInitialParameterData(Map<String, dynamic> data) {

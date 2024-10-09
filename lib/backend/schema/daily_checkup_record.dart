@@ -26,11 +26,6 @@ class DailyCheckupRecord extends FirestoreRecord {
   List<String> get photosRepas => _photosRepas ?? const [];
   bool hasPhotosRepas() => _photosRepas != null;
 
-  // "humeur_du_jour" field.
-  String? _humeurDuJour;
-  String get humeurDuJour => _humeurDuJour ?? '';
-  bool hasHumeurDuJour() => _humeurDuJour != null;
-
   // "date_checkup" field.
   DateTime? _dateCheckup;
   DateTime? get dateCheckup => _dateCheckup;
@@ -46,15 +41,32 @@ class DailyCheckupRecord extends FirestoreRecord {
   int get humeurNumber => _humeurNumber ?? 0;
   bool hasHumeurNumber() => _humeurNumber != null;
 
+  // "photos_du_jour" field.
+  List<String>? _photosDuJour;
+  List<String> get photosDuJour => _photosDuJour ?? const [];
+  bool hasPhotosDuJour() => _photosDuJour != null;
+
+  // "experience_jour" field.
+  int? _experienceJour;
+  int get experienceJour => _experienceJour ?? 0;
+  bool hasExperienceJour() => _experienceJour != null;
+
+  // "meteo_jour" field.
+  int? _meteoJour;
+  int get meteoJour => _meteoJour ?? 0;
+  bool hasMeteoJour() => _meteoJour != null;
+
   DocumentReference get parentReference => reference.parent.parent!;
 
   void _initializeFields() {
     _messageDuJour = snapshotData['message_du_jour'] as String?;
     _photosRepas = getDataList(snapshotData['photos_repas']);
-    _humeurDuJour = snapshotData['humeur_du_jour'] as String?;
     _dateCheckup = snapshotData['date_checkup'] as DateTime?;
     _conseilDuJour = snapshotData['conseil_du_jour'] as String?;
     _humeurNumber = castToType<int>(snapshotData['humeur_number']);
+    _photosDuJour = getDataList(snapshotData['photos_du_jour']);
+    _experienceJour = castToType<int>(snapshotData['experience_jour']);
+    _meteoJour = castToType<int>(snapshotData['meteo_jour']);
   }
 
   static Query<Map<String, dynamic>> collection([DocumentReference? parent]) =>
@@ -98,18 +110,20 @@ class DailyCheckupRecord extends FirestoreRecord {
 
 Map<String, dynamic> createDailyCheckupRecordData({
   String? messageDuJour,
-  String? humeurDuJour,
   DateTime? dateCheckup,
   String? conseilDuJour,
   int? humeurNumber,
+  int? experienceJour,
+  int? meteoJour,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
       'message_du_jour': messageDuJour,
-      'humeur_du_jour': humeurDuJour,
       'date_checkup': dateCheckup,
       'conseil_du_jour': conseilDuJour,
       'humeur_number': humeurNumber,
+      'experience_jour': experienceJour,
+      'meteo_jour': meteoJour,
     }.withoutNulls,
   );
 
@@ -125,20 +139,24 @@ class DailyCheckupRecordDocumentEquality
     const listEquality = ListEquality();
     return e1?.messageDuJour == e2?.messageDuJour &&
         listEquality.equals(e1?.photosRepas, e2?.photosRepas) &&
-        e1?.humeurDuJour == e2?.humeurDuJour &&
         e1?.dateCheckup == e2?.dateCheckup &&
         e1?.conseilDuJour == e2?.conseilDuJour &&
-        e1?.humeurNumber == e2?.humeurNumber;
+        e1?.humeurNumber == e2?.humeurNumber &&
+        listEquality.equals(e1?.photosDuJour, e2?.photosDuJour) &&
+        e1?.experienceJour == e2?.experienceJour &&
+        e1?.meteoJour == e2?.meteoJour;
   }
 
   @override
   int hash(DailyCheckupRecord? e) => const ListEquality().hash([
         e?.messageDuJour,
         e?.photosRepas,
-        e?.humeurDuJour,
         e?.dateCheckup,
         e?.conseilDuJour,
-        e?.humeurNumber
+        e?.humeurNumber,
+        e?.photosDuJour,
+        e?.experienceJour,
+        e?.meteoJour
       ]);
 
   @override

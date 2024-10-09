@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class MyDailyCheckupFirebaseUser extends BaseAuthUser {
-  MyDailyCheckupFirebaseUser(this.user);
+class PrismyFirebaseUser extends BaseAuthUser {
+  PrismyFirebaseUser(this.user);
   User? user;
   @override
   bool get loggedIn => user != null;
@@ -54,18 +54,17 @@ class MyDailyCheckupFirebaseUser extends BaseAuthUser {
 
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
-  static BaseAuthUser fromFirebaseUser(User? user) =>
-      MyDailyCheckupFirebaseUser(user);
+  static BaseAuthUser fromFirebaseUser(User? user) => PrismyFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> myDailyCheckupFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> prismyFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = MyDailyCheckupFirebaseUser(user);
+        currentUser = PrismyFirebaseUser(user);
         return currentUser!;
       },
     );

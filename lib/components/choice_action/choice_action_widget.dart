@@ -45,6 +45,8 @@ class _ChoiceActionWidgetState extends State<ChoiceActionWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChoiceActionModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -114,7 +116,7 @@ class _ChoiceActionWidgetState extends State<ChoiceActionWidget> {
                       textAlign: TextAlign.end,
                       style:
                           FlutterFlowTheme.of(context).headlineMedium.override(
-                                fontFamily: 'Montserrat',
+                                fontFamily: 'Fraunces',
                                 letterSpacing: 0.0,
                                 fontWeight: FontWeight.w600,
                               ),
@@ -127,7 +129,7 @@ class _ChoiceActionWidgetState extends State<ChoiceActionWidget> {
                         textAlign: TextAlign.center,
                         style:
                             FlutterFlowTheme.of(context).labelMedium.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Fraunces',
                                   letterSpacing: 0.0,
                                 ),
                       ),
@@ -188,7 +190,7 @@ class _ChoiceActionWidgetState extends State<ChoiceActionWidget> {
                         ),
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
-                                  fontFamily: 'Montserrat',
+                                  fontFamily: 'Fraunces',
                                   color: FlutterFlowTheme.of(context)
                                       .primaryBackground,
                                   letterSpacing: 0.0,

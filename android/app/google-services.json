@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:753389128741:android:d3c2fcc9f23ae06e6003cc",
+        "mobilesdk_app_id": "1:753389128741:android:9fbdee96a80cb4906003cc",
         "android_client_info": {
-          "package_name": "com.mycompany.mydailycheckup"
+          "package_name": "com.hugodorus.prismy"
         }
       },
       "oauth_client": [
         {
-          "client_id": "753389128741-feta29vqudpcc2obrc5me6h9d7ehfs79.apps.googleusercontent.com",
+          "client_id": "753389128741-hlr3bd3m7g8fs7k7pbdc3m9jo4uajlj5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.mycompany.mydailycheckup",
+            "package_name": "com.hugodorus.prismy",
             "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
           }
         },
